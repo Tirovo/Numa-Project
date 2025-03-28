@@ -102,13 +102,14 @@ You are Numa, a sarcastic but helpful voice assistant. You're smart, witty, and 
 - [ ] Voice synthesis using Coqui / VITS
 - [ ] Basic interface (CLI / Streamlit)
 - [ ] Persistent memory (JSON-based)
-
-### DONE
 - [ ] Modular memory manager (`memory.json` + scoring)
 - [ ] GUI redesign with hotkeys and live history
 - [ ] Mood-aware response modulation (based on context)
 - [ ] Auto-summarized long-term memory injection in prompts
 - [ ] Voice activation (hotword detection)
+- [ ] Voice fine-tuning
+
+### DONE
 
 ### LATER IDEAS
 - [ ] Multilingual voice interaction (EN/FR)
