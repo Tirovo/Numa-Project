@@ -1,9 +1,9 @@
 # 🚀 Liste des tâches pour le projet **Numa**
 
 ## 1. Initialisation du projet
-- [ ] Créer un dépôt GitHub pour Numa
-- [ ] Définir les objectifs du projet (fonctionnalités, comportement, etc.)
-- [ ] Choisir et configurer un environnement de développement (Python, dépendances, outils)
+- [X] Créer un dépôt GitHub pour Numa
+- [X] Définir les objectifs du projet (fonctionnalités, comportement, etc.)
+- [X] Choisir et configurer un environnement de développement (Python, dépendances, outils)
 
 ## 2. Mise en place de la **Reconnaissance Vocale en Temps Réel (Whisper + VAD)**
 - [ ] Installer `faster-whisper` pour la transcription vocale locale
