@@ -111,6 +111,12 @@ You are Numa, a sarcastic but helpful voice assistant. You're smart, witty, and 
 
 ### DONE
 
+### NEED TO BE FIXED
+
+### CURRENTLY FIXING
+
+# FIXED 
+
 ### LATER IDEAS
 - [ ] Multilingual voice interaction (EN/FR)
 - [ ] Personality profile tuning UI
