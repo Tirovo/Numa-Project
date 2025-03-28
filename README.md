@@ -2,12 +2,14 @@
 
 **Numa** is a fully local, real-time AI voice assistant. She's not just helpful — she's got wit, sarcasm, and charm. Powered by open-source AI models and designed for privacy, Numa lives on your machine, not in the cloud.
 
-<div align="center">
-  <img src="https://img.shields.io/badge/status-private%20demo-yellow" />
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC--BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+
+
+<img src="https://img.shields.io/badge/status-private%20demo-yellow" />
   <img src="https://img.shields.io/badge/powered%20by-faster--whisper-blue" />
   <img src="https://img.shields.io/badge/LLM-GPT4All%20%7C%20Mistral%20%7C%20Nous%20Hermes%202-lightgrey" />
   <img src="https://img.shields.io/badge/runs-offline-success" />
-  <img src="https://img.shields.io/badge/license-CC--BY--NC%204.0-lightgrey.svg" />
+  <a href="https://creativecommons.org/licenses/by-nc/4.0/"><img src="https://img.shields.io/badge/license-CC--BY--NC%204.0-lightgrey.svg" alt="License: CC BY-NC 4.0"></a>
 </div>
 
 ---
@@ -38,6 +40,31 @@
 
 ---
 
+## 🧠 Memory & Evolving Personality
+
+Numa uses two layers of memory:
+
+- 🧠 **Short-term memory**: stores recent exchanges in RAM, allowing her to respond fluidly and contextually in a conversation.
+- 📚 **Long-term memory**: saved locally in a file or lightweight database (JSON, SQLite...) and updated automatically during interactions.
+
+### What she remembers:
+- Your name, preferences, tone
+- Your habits and recurring questions
+- Your music taste, favorite topics
+- **The way you talk about your friends**
+- **Things she likes, dislikes, or claims to feel**
+- **The name you've given her (if any)**
+
+This memory helps Numa shape her identity over time:
+- 🧠 She adapts her tone and humor to your style
+- 🪞 She develops her own preferences and attitudes
+- 🧑‍🤝‍🧑 She remembers your social circle, the names you mention, and how you feel about them
+
+> Numa doesn’t just remember you.
+> She remembers herself — and the relationship you build together.
+
+---
+
 ## 🧠 Personality & Behavior Engine
 
 | Feature | Tool |
@@ -64,6 +91,30 @@ You are Numa, a sarcastic but helpful voice assistant. You're smart, witty, and 
 | **TTS** | Coqui TTS / VITS / pyttsx3 |
 | **Interface** | Streamlit / PyQt |
 | **System** | 100% local, offline-first – Windows (Ryzen 9, 32GB RAM) |
+
+---
+
+## 🗺️ Roadmap
+
+### TO DO
+- [ ] Real-time voice capture and transcription (Whisper + VAD)
+- [ ] Local LLM integration with context memory (Nous Hermes 2 / Mistral)
+- [ ] Voice synthesis using Coqui / VITS
+- [ ] Basic interface (CLI / Streamlit)
+- [ ] Persistent memory (JSON-based)
+
+### DONE
+- [ ] Modular memory manager (`memory.json` + scoring)
+- [ ] GUI redesign with hotkeys and live history
+- [ ] Mood-aware response modulation (based on context)
+- [ ] Auto-summarized long-term memory injection in prompts
+- [ ] Voice activation (hotword detection)
+
+### LATER IDEAS
+- [ ] Multilingual voice interaction (EN/FR)
+- [ ] Personality profile tuning UI
+- [ ] Local calendar/email/task integration
+- [ ] Emotion-based voice modulation (TTS style control)
 
 ---
 
@@ -120,18 +171,12 @@ However, please keep in mind:
 - Use of powerful local LLMs for contextual dialogue
 - Neural voice synthesis for natural response
 - A cohesive, private-by-design architecture
+- An evolving assistant that remembers and adapts to you
 
 ---
 
 ## 📬 Author
 
-Made with ❤️ by **Tristan Londé**  
+Made by **Tristan Londé**  
 Engineer @ ENIB  
-Focused on embedded AI, offline assistants, and tech with personality.
-
-
-Passionate by AI and human–machine interaction.
-
----
-[![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC--BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
-
+Passionate about AI and human-machine interactions
