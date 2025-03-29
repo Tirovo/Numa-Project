@@ -19,7 +19,7 @@
 - 🎙️ Captures your voice in real time  
 - 🧠 Transcribes speech with `faster-whisper` + VAD  
 - 🤖 Responds using a local LLM (GPT4All, Mistral 7B, Nous Hermes...)  
-- 🗣️ Speaks fluently via neural TTS (Coqui, VITS, etc.)  
+- 🗣️ Speaks fluently via neural TTS (Coqui)  
 - 💻 Shows everything in a beautiful local interface (Streamlit or PyQt)
 
 ---
@@ -97,7 +97,6 @@ You are Numa, a sarcastic but helpful voice assistant. You're smart, witty, and 
 ## 🗺️ Roadmap
 
 ### TO DO
-- [ ] Real-time voice capture and transcription (Whisper + VAD)
 - [ ] Local LLM integration with context memory (Nous Hermes 2 / Mistral)
 - [ ] Voice synthesis using Coqui / VITS
 - [ ] Basic interface (CLI / Streamlit)
@@ -110,12 +109,13 @@ You are Numa, a sarcastic but helpful voice assistant. You're smart, witty, and 
 - [ ] Voice fine-tuning
 
 ### DONE
+- [X] Real-time voice capture and transcription (Whisper + VAD)
 
 ### NEED TO BE FIXED
 
 ### CURRENTLY FIXING
 
-# FIXED 
+### FIXED 
 
 ### LATER IDEAS
 - [ ] Multilingual voice interaction (EN/FR)
