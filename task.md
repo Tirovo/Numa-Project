@@ -6,10 +6,14 @@
 - [X] Choisir et configurer un environnement de développement (Python, dépendances, outils)
 
 ## 2. Mise en place de la **Reconnaissance Vocale en Temps Réel (Whisper + VAD)**
-- [ ] Installer `faster-whisper` pour la transcription vocale locale
-- [ ] Installer et configurer `Silero VAD` pour la détection de silence
-- [ ] Tester la reconnaissance vocale avec un fichier audio de test
-- [ ] Implémenter la gestion des flux audio pour un traitement en temps réel
+- [X] Installer `faster-whisper` pour la transcription vocale locale
+- [X] Installer et configurer `Silero VAD` pour la détection de silence
+- [X] Tester la reconnaissance vocale avec un fichier audio de test
+- [X] Implémenter la gestion des flux audio pour un traitement en temps réel (transcription en quasi temps réel utilisée au final)
+    => un flux live via sounddevice
+       un buffer intelligent avec queue
+       une détection de début/fin de phrase avec VAD
+       un déclenchement auto de la transcription
 
 ## 3. Mise en place de la **Synthèse Vocale (TTS)**
 - [ ] Choisir un moteur TTS (Coqui TTS, VITS, pyttsx3, etc.)
