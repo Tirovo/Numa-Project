@@ -1,3 +1,11 @@
 # Ignore Python virtual envs
 **/venv/
 venv/
+
+# Ignore tts fine tune data and TTS files
+/numa_tts/TTS
+/numa_tts/numa-voice-dataset/*
+!/numa_tts/numa-voice-dataset/automatic_quotationmarks_remover.py
+
+# Ignore model
+/numa_tts/models/*
