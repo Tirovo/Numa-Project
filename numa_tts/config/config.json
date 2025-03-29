@@ -1,0 +1,40 @@
+{
+  "model": "vits",
+  "run_name": "vits_numa_expressive",
+  "output_path": "runs/vits_numa",
+
+  "audio": {
+    "sample_rate": 22050,
+    "fft_size": 1024,
+    "win_length": 1024,
+    "hop_length": 256,
+    "num_mels": 80,
+    "mel_fmin": 0,
+    "mel_fmax": 8000
+  },
+
+  "training": {
+    "batch_size": 16,
+    "eval_batch_size": 16,
+    "epochs": 50,
+    "lr": 0.0001,
+    "grad_clip": 1.0,
+    "run_eval": true,
+    "print_step": 25,
+    "save_step": 500,
+    "save_n_checkpoints": 3,
+    "keep_last_epochs": 2,
+    "num_loader_workers": 2,
+    "ignore_errors": true
+  },
+
+  "datasets": [
+    {
+      "name": "numa_dataset",
+      "path": "../numa-voice-dataset",
+      "meta_file_train": "metadata.csv",
+      "meta_file_val": "metadata.csv",
+      "formatter": "ljspeech"
+    }
+  ]
+}
