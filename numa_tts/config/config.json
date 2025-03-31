@@ -1,7 +1,7 @@
 {
   "model": "vits",
-  "run_name": "vits_numa_expressive",
-  "output_path": "runs/vits_numa",
+  "run_name": "vits_numa_expressive_v2",
+  "output_path": "runs/vits_numa_v2",
 
   "audio": {
     "sample_rate": 22050,
@@ -16,25 +16,43 @@
   "training": {
     "batch_size": 16,
     "eval_batch_size": 16,
-    "epochs": 50,
+    "epochs": 200,
     "lr": 0.0001,
     "grad_clip": 1.0,
     "run_eval": true,
+    "eval_interval": 5,
     "print_step": 25,
-    "save_step": 500,
+    "save_step": 100,
     "save_n_checkpoints": 3,
     "keep_last_epochs": 2,
     "num_loader_workers": 2,
     "ignore_errors": true
   },
 
+"characters": {
+  "pad": "_",
+  "eos": "~",
+  "bos": "^",
+  "blank": "<BLANK>",
+  "characters": " !\"',-.:?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+  "punctuations": "",
+  "phonemes": "",
+  "is_unique": true,
+  "is_sorted": true
+},
+
+  "text_cleaner": "english_cleaners",
+  "use_phonemes": false,
+  "use_audio_input": false,
+
   "datasets": [
     {
-      "name": "numa_dataset",
-      "path": "../numa-voice-dataset",
+      "name": "numa_voice_dataset",
+      "path": "../numa-voice-dataset-highpitch-sox",
       "meta_file_train": "metadata.csv",
       "meta_file_val": "metadata.csv",
       "formatter": "ljspeech"
     }
   ]
 }
+
