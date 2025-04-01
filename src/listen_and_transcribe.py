@@ -5,8 +5,8 @@ import threading
 import time
 import sys
 
-import torch
-from faster_whisper import WhisperModel
+import torch # type: ignore
+from faster_whisper import WhisperModel # type: ignore
 
 sys.stdout.reconfigure(encoding='utf-8')
 

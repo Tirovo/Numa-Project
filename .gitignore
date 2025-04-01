@@ -2,10 +2,12 @@
 **/venv/
 venv/
 
-# Ignore tts fine tune data and TTS files
+# Ignore bark data and TTS files
 /numa_tts/TTS
-/numa_tts/numa-voice-dataset/*
-!/numa_tts/numa-voice-dataset/automatic_quotationmarks_remover.py
+/numa_tts/numa-voice-dataset-highpitch-sox
+/numa_tts/numa-voice-dataset
+/numa_tts/hifigan/UNIVERSAL_V1
 
-# Ignore model
-/numa_tts/models/*
+# Ignore test_data
+/test_data
+
