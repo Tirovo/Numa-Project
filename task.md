@@ -16,7 +16,7 @@
        un déclenchement auto de la transcription
 
 ## 3. Mise en place de la **Synthèse Vocale (TTS)**
-- [X] Choisir un moteur TTS (Coqui TTS, VITS, pyttsx3, etc.) => j'ai choisi Coqui TTS
+- [X] Choisir un moteur TTS (Coqui TTS, VITS, pyttsx3, etc.) => j'ai choisi VITS
 - [ ] Installer et configurer le moteur TTS
 - [ ] Tester la génération de voix avec du texte de test
 - [ ] Créer une voix personnalisée (ou utiliser un modèle existant) et ajuster l’intonation/sarcasme
