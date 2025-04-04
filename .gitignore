@@ -2,11 +2,8 @@
 **/venv/
 venv/
 
-# Ignore bark data and TTS files
+# Ignore TTS files
 /numa_tts/TTS
-/numa_tts/numa-voice-dataset-highpitch-sox
-/numa_tts/numa-voice-dataset
-/numa_tts/hifigan/UNIVERSAL_V1
 
 # Ignore test_data
 /test_data

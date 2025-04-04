@@ -1,0 +1,22 @@
+# Python 3.11.x required
+
+# Common packages
+faster-whisper==1.1.1
+sounddevice==0.5.1
+soundfile==0.12.1
+noisereduce==3.0.1
+numpy==2.2.4
+TTS==0.22.0
+fastapi
+uvicorn
+pydantic
+# SoX is required (install via OS package manager)
+
+
+# Uncomment these for GPU (CUDA 12.1)
+# torch==2.5.1+cu121 # with pip install torch==2.5.1+cu121 torchaudio==2.5.1+cu121 --index-url https://download.pytorch.org/whl/cu121
+# torchaudio==2.5.1+cu121
+
+# Or use these for CPU-only (not fully tested)
+# torch==2.6.0
+# torchaudio==2.6.0
