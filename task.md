@@ -16,19 +16,19 @@
        un déclenchement auto de la transcription
 
 ## 3. Mise en place de la **Synthèse Vocale (TTS)**
-- [X] Choisir un moteur TTS
-     => j'ai choisi `Coqui TTS` (flexible, compatible GPU, bonne qualité audio)
+- [X] Choisir un moteur TTS  
+     => j'ai choisi `Coqui TTS` (flexible, compatible GPU, bonne qualité audio)  
      J'utilise un `VITS` préentrainé (`tts_models/en/vctk/vits`) car il intègre directement le vocoder.
-     => J'envisage la possibilité d'entrainer un modèle `VITS from scratch` une fois que le projet sera plus développé.
-- [X] Installer et configurer le moteur TTS
-     => Le modèle VITS que j'utilise est multispeaker, mais j'ai opté pour la voix `p240`, féminine, fluide et claire.
-- [X] Tester la génération de voix avec du texte de test
-     => Vérification de bon fonctionnement et d'absence de crash pour toutes longueurs de phrases.
-     => Du bruit était présent : utilisation de `noicereduce`, réduite à 0.5 pour éviter d'impacter la clarté de la voix.
-     => Accélération des performances avec une `API locale via FastAPI` évitant de charger le modèle à chaque appel, et donc de gagner un temps précieux dans le délai de génération de la voix. Cette API permet à un agent LLM ou une app de piloter la voix de Numa de manière fluide et rapide.
-- [X] Créer une voix personnalisée (ou utiliser un modèle existant) et ajuster l’intonation/sarcasme
-     => Le VITS préentrainé que j'ai utilisé possède déjà une bonne faculté à exprimer des émotions. J'ai cependant ajusté le pitch, le tempo et la reverb selon mes goûts à l'aide de `SoX`
-     => Dans le futur, pour entrainer mon VITS from Scratch, j'envisage de créer un dataset vocal  avec `Bark` afin de rendre Numa encore plus émotive dans sa voix.
+     => J'envisage la possibilité d'entrainer un modèle `VITS from scratch` une fois que le projet sera plus développé.  
+- [X] Installer et configurer le moteur TTS  
+     => Le modèle VITS que j'utilise est multispeaker, mais j'ai opté pour la voix `p240`, féminine, fluide et claire.  
+- [X] Tester la génération de voix avec du texte de test  
+     => Vérification de bon fonctionnement et d'absence de crash pour toutes longueurs de phrases.  
+     => Du bruit était présent : utilisation de `noicereduce`, réduite à 0.5 pour éviter d'impacter la clarté de la voix.  
+     => Accélération des performances avec une `API locale via FastAPI` évitant de charger le modèle à chaque appel, et donc de gagner un temps précieux dans le délai de génération de la voix. Cette API permet à un agent LLM ou une app de piloter la voix de Numa de manière fluide et rapide.  
+- [X] Créer une voix personnalisée (ou utiliser un modèle existant) et ajuster l’intonation/sarcasme  
+     => Le VITS préentrainé que j'ai utilisé possède déjà une bonne faculté à exprimer des émotions. J'ai cependant ajusté le pitch, le tempo et la reverb selon mes goûts à l'aide de `SoX`  
+     => Dans le futur, pour entrainer mon VITS from Scratch, j'envisage de créer un dataset vocal  avec `Bark` afin de rendre Numa encore plus émotive dans sa voix.  
 
 ## 4. Mise en place de l’**Intégration LLM Local (Nous Hermes 2 / Mistral)**
 - [ ] Choisir un LLM local (GPT4All, Nous Hermes, Mistral 7B)
