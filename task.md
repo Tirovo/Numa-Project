@@ -16,7 +16,6 @@
        un déclenchement auto de la transcription
 
 ## 3. Mise en place de la **Synthèse Vocale (TTS)**
-<<<<<<< HEAD
 - [X] Choisir un moteur TTS
      => j'ai choisi `Coqui TTS` (flexible, compatible GPU, bonne qualité audio)
      J'utilise un `VITS` préentrainé (`tts_models/en/vctk/vits`) car il intègre directement le vocoder.
@@ -30,12 +29,6 @@
 - [X] Créer une voix personnalisée (ou utiliser un modèle existant) et ajuster l’intonation/sarcasme
      => Le VITS préentrainé que j'ai utilisé possède déjà une bonne faculté à exprimer des émotions. J'ai cependant ajusté le pitch, le tempo et la reverb selon mes goûts à l'aide de `SoX`
      => Dans le futur, pour entrainer mon VITS from Scratch, j'envisage de créer un dataset vocal  avec `Bark` afin de rendre Numa encore plus émotive dans sa voix.
-=======
-- [X] Choisir un moteur TTS (Coqui TTS, VITS, pyttsx3, etc.) => j'ai choisi VITS
-- [ ] Installer et configurer le moteur TTS
-- [ ] Tester la génération de voix avec du texte de test
-- [ ] Créer une voix personnalisée (ou utiliser un modèle existant) et ajuster l’intonation/sarcasme
->>>>>>> 3ddb4636688082099926538262aa9a9fc3701525
 
 ## 4. Mise en place de l’**Intégration LLM Local (Nous Hermes 2 / Mistral)**
 - [ ] Choisir un LLM local (GPT4All, Nous Hermes, Mistral 7B)
