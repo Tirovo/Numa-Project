@@ -1,73 +1,81 @@
+from fastapi import FastAPI
 import torch
-import json
-import numpy as np
-import soundfile as sf
+import tempfile
+import subprocess
 import os
-import sys
+import sounddevice as sd
+import soundfile as sf
+import noisereduce as nr
+from TTS.api import TTS
 
-# ➕ Ajout du dossier HiFi-GAN dans le path
-sys.path.append(os.path.abspath("hifigan"))
+GPU_USAGE = torch.cuda.is_available()
 
-from models import Generator
-from env import AttrDict
+# Register safe classes for PyTorch deserialization
+safe_classes = []
 
-from TTS.config import load_config
-from TTS.utils.audio import AudioProcessor
-from TTS.tts.models.vits import Vits
+# Importing RAdam optimizer
+try:
+    from TTS.utils.radam import RAdam
+    safe_classes.append(RAdam)
+except:
+    pass 
 
-# 📁 Chemins de tes modèles
-TTS_MODEL_PATH = r"C:\Users\trist\Documents\S910\Numa-Project\numa_tts\TTS\runs\vits_numa_v2\vits_numa_expressive_v2-April-01-2025_04+39PM-dbf1a08a\best_model.pth"
-TTS_CONFIG_PATH = r"C:\Users\trist\Documents\S910\Numa-Project\numa_tts\TTS\runs\vits_numa_v2\vits_numa_expressive_v2-April-01-2025_04+39PM-dbf1a08a\config.json"
+# Try importing defaultdict (used in some model configs)
+try:
+    from collections import defaultdict
+    safe_classes.append(defaultdict)
+except:
+    pass  # Ignore if not available
 
-VOCODER_PATH = r"C:\Users\trist\Documents\S910\Numa-Project\numa_tts\hifigan\UNIVERSAL_V1\g_02500000"
-VOCODER_CONFIG = r"C:\Users\trist\Documents\S910\Numa-Project\numa_tts\hifigan\UNIVERSAL_V1\config.json"
+# Always include the base dict class
+safe_classes.append(dict)
 
-TEXT = "You survived the day. Gold star."
-OUTPUT_WAV = "final_output.wav"
+# Register these classes as safe for torch.load
+torch.serialization.add_safe_globals(safe_classes)
 
-# 🎛️ Config vocoder
-with open(VOCODER_CONFIG) as f:
-    vocoder_config = json.load(f)
-vocoder_config = AttrDict(vocoder_config)
+# Local server launch
+app = FastAPI()
+print(" Now launching the NumaTTS local server...")
 
-# 🔧 Load vocoder HiFi-GAN
-generator = Generator(vocoder_config)
-checkpoint = torch.load(VOCODER_PATH, map_location="cpu")
-if "generator" in checkpoint:
-    generator.load_state_dict(checkpoint["generator"])
-else:
-    generator.load_state_dict(checkpoint)
-generator.eval()
-generator.remove_weight_norm()
+# Initializing our model (here ts_models/en/vctk/vits)
+class NumaTTS:
+    def __init__(self, model_name="tts_models/en/vctk/vits", highPitch_mode=True):
+        self.model_name = model_name
+        self.anime_mode = highPitch_mode
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-generator.to(device)
+        print(f"Loading the model : {self.model_name}")
+        self.tts = TTS(model_name=self.model_name, progress_bar=True, gpu=GPU_USAGE)
 
-# 🔊 Fonction de vocodage
-def vocode(mel_tensor):
-    with torch.no_grad():
-        mel_tensor = mel_tensor.to(device)
-        audio = generator(mel_tensor).squeeze().cpu().numpy()
-    return audio
+        if hasattr(self.tts, "speakers"):
+            self.speaker = "p240"
+            print("Selected voice :", self.speaker)
+        else:
+            self.speaker = None
 
-# 🧠 Chargement du modèle VITS
-config = load_config(TTS_CONFIG_PATH)
-ap = AudioProcessor.init_from_config(config)
-vits = Vits.init_from_config(config)
-vits.load_checkpoint(config, TTS_MODEL_PATH, eval=True)
-vits.eval()
-vits.to(device)
+    def say(self, text):
+        print(f"Text received : {text}")
+        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as raw_file:
+            raw_path = raw_file.name
 
-# 📝 Texte → mel spectrogramme
-# 📝 Texte → mel spectrogramme
-input_ids = vits.tokenizer.text_to_ids(TEXT)
-input_tensor = torch.LongTensor(input_ids).unsqueeze(0).to(device)
+        # Synthesis
+        self.tts.tts_to_file(text=text, speaker=self.speaker, file_path=raw_path)
 
-with torch.no_grad():
-    result = vits.inference(input_tensor)
-    audio = result["model_outputs"].squeeze().cpu().numpy()
+        # Voice post-processing (pitch, tempo, reverb)
+        out_path = raw_path.replace(".wav", "higher_pitch.wav")
+        command = (
+            f"sox {raw_path} {out_path} highpass 150 pitch 350 "
+            f"tempo 1 reverb 8 20 20 30 0 0 gain -2"
+        )
+        subprocess.call(command, shell=True)
+        os.remove(raw_path)
 
+        # Lecture + denoise léger
+        if os.path.exists(out_path):
+            data, sr = sf.read(out_path)
+            audio = nr.reduce_noise(y=data, sr=sr, prop_decrease=0.5)
+            print("Playing the Audio...")
+            sd.play(audio, samplerate=sr)
+            sd.wait()
+            os.remove(out_path)
 
-
-sf.write(OUTPUT_WAV, audio, ap.sample_rate)
-print(f"✅ WAV file generated at: {OUTPUT_WAV}")
+        torch.cuda.empty_cache()
