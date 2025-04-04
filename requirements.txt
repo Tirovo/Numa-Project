@@ -1,22 +1,46 @@
 # Python 3.11.x required
 
-# Common packages
+# --- Audio + Speech ---
 faster-whisper==1.1.1
 sounddevice==0.5.1
 soundfile==0.12.1
 noisereduce==3.0.1
-numpy==2.2.4
+numpy==1.26.4
+
+# --- TTS / Synthèse vocale ---
 TTS==0.22.0
-fastapi
-uvicorn
-pydantic
-# SoX is required (install via OS package manager)
 
+# --- Serveur local ---
+fastapi==0.110.0
+uvicorn==0.29.0
+pydantic==2.6.4
 
-# Uncomment these for GPU (CUDA 12.1)
-# torch==2.5.1+cu121 # with pip install torch==2.5.1+cu121 torchaudio==2.5.1+cu121 --index-url https://download.pytorch.org/whl/cu121
-# torchaudio==2.5.1+cu121
+# -------------------------------
+# --- PyTorch (choisir un bloc) -
+# -------------------------------
 
-# Or use these for CPU-only (not fully tested)
+# --- GPU (CUDA 11.8) ---
+# pip install torch==2.5.1+cu118 torchaudio==2.5.1+cu118 --index-url https://download.pytorch.org/whl/cu118
+torch==2.5.1+cu118
+torchaudio==2.5.1+cu118
+
+# --- CPU ONLY (décommentez si vous n'avez pas de GPU) ---
 # torch==2.6.0
 # torchaudio==2.6.0
+
+# -------------------------------
+# --- LLM + Fine-tuning -------
+# -------------------------------
+transformers==4.39.3
+peft==0.10.0
+accelerate==0.28.0
+
+# --- Quantization (GPU uniquement) ---
+bitsandbytes==0.45.4
+
+# -------------------------------
+# --- Dépendances système ------
+# -------------------------------
+# SoX : à installer manuellement selon votre OS
+# Windows : https://sourceforge.net/projects/sox/files/sox/
+# Linux (Debian/Ubuntu) : sudo apt install sox
