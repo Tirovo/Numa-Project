@@ -5,8 +5,7 @@ import uvicorn
 
 
 app = FastAPI()
-numa = NumaTTS(anime_mode=True)
-numa.say("Hello! It's me! Numa! What do you want to talk about this time?") # Launch sentence
+numa = NumaTTS(highPitch_mode=True)
 
 class SayRequest(BaseModel):
     text: str
@@ -17,4 +16,5 @@ def say(req: SayRequest):
     return {"status": "ok", "message": "Text spoken."}
 
 if __name__ == "__main__":
+    numa.say("Hello! It's me! Numa! What do you want to talk about this time?") # Launch sentence
     uvicorn.run("numa_server:app", host="127.0.0.1", port=8000, reload=False)
