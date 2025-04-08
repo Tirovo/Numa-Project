@@ -8,3 +8,5 @@ venv/
 # Ignore test_data
 /test_data
 
+# Ignore LLM model
+/numa_language/ggml-model.gguf
