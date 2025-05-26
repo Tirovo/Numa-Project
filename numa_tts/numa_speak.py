@@ -1,4 +1,3 @@
-from fastapi import FastAPI
 import torch
 import tempfile
 import subprocess
@@ -33,17 +32,13 @@ safe_classes.append(dict)
 # Register these classes as safe for torch.load
 torch.serialization.add_safe_globals(safe_classes)
 
-# Local server launch
-app = FastAPI()
-print(" Now launching the NumaTTS local server...")
-
 # Initializing our model (here ts_models/en/vctk/vits)
 class NumaTTS:
     def __init__(self, model_name="tts_models/en/vctk/vits", highPitch_mode=True):
         self.model_name = model_name
         self.anime_mode = highPitch_mode
 
-        print(f"Loading the model : {self.model_name}")
+        '''print(f"Loading the tts model : {self.model_name}")'''
         self.tts = TTS(model_name=self.model_name, progress_bar=True, gpu=GPU_USAGE)
 
         if hasattr(self.tts, "speakers"):
@@ -53,7 +48,7 @@ class NumaTTS:
             self.speaker = None
 
     def say(self, text):
-        print(f"Text received : {text}")
+        '''print(f"Text received : {text}")'''
         with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as raw_file:
             raw_path = raw_file.name
 
@@ -73,7 +68,7 @@ class NumaTTS:
         if os.path.exists(out_path):
             data, sr = sf.read(out_path)
             audio = nr.reduce_noise(y=data, sr=sr, prop_decrease=0.5)
-            print("Playing the Audio...")
+            '''print("Playing the Audio...")'''
             sd.play(audio, samplerate=sr)
             sd.wait()
             os.remove(out_path)
