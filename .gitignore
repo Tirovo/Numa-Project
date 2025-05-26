@@ -9,4 +9,4 @@ venv/
 /test_data
 
 # Ignore LLM model
-/numa_language/ggml-model.gguf
+/numa_llm/ggml-model.gguf
